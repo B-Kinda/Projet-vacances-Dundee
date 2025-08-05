@@ -32,11 +32,7 @@
                     aria-label="annsophie">Anne-Sophie</a
                 ></button
             >
-            <button class="navbar__richard" aria-label="richard"
-                ><a href="@" class="navbar__richard-link" aria-label="richard"
-                    >Richard</a
-                ></button
-            >
+
         </nav>
     </header>
     <div class="cards">
@@ -44,7 +40,7 @@
         <section class="cards__julien"></section>
         <section class="cards__gael"></section>
         <section class="cards__annesophie"></section>
-        <section class="cards__richard"></section>
+   
     </div>
     <footer></footer>
 </main>
