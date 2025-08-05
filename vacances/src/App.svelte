@@ -13,8 +13,7 @@
             >
             <button class="navbar__baptiste" aria-label="baptiste"
                 ><a href="@" class="navbar__baptiste-link" aria-label="baptiste"
-                    >Baptiste</a
-                ></button
+                ></a></button
             >
             <button class="navbar__julien" aria-label="julien"
                 ><a href="@" class="navbar__julien-link" aria-label="julien"
@@ -63,12 +62,17 @@
         color: black;
     }
     .navbar__baptiste {
-        background-image: url(../public/pasteque.jpeg);
+        background-image: url(../public/Cassette\ 00.png);
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
         border-radius: 0.9rem;
         border-style: none;
         border: 0.2rem solid;
-        /* border-color: linear-gradient(to right, #d86348, #1e1e1e) 1; */
+    }
+    .navbar__baptiste:hover {
+        background-image: url(../public/pasteque.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 </style>
