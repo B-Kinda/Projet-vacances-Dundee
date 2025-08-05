@@ -32,14 +32,6 @@
                     aria-label="annsophie">Anne-Sophie</a
                 ></button
             >
-<<<<<<< HEAD
-=======
-            <button class="navbar__richard" aria-label="richard"
-                ><a href="@" class="navbar__richard-link" aria-label="richard"
-                    >Richard</a
-                ></button
-            >
->>>>>>> 006bcb85ad9d595c15e7c1abbeaeebf3aa5411e4
         </nav>
     </header>
     <div class="cards">
@@ -47,10 +39,6 @@
         <section class="cards__julien"></section>
         <section class="cards__gael"></section>
         <section class="cards__annesophie"></section>
-<<<<<<< HEAD
-=======
-        <section class="cards__richard"></section>
->>>>>>> 006bcb85ad9d595c15e7c1abbeaeebf3aa5411e4
     </div>
     <footer></footer>
 </main>
