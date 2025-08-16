@@ -1,14 +1,15 @@
 <script>
+    import pageAnneSophie from"./page/annesophie.svelte";
 </script>
 
 <main>
     <header>
         <nav class="navbar">
-            <button class="navbar__acceuil" aria-label="acceuil"
+            <button class="navbar__accueil" aria-label="accueil"
                 ><a
                     href="./App.svelte"
-                    class="navbar__acceuil-link"
-                    aria-label="acceuil">Acceuil</a
+                    class="navbar__accueil-link"
+                    aria-label="accueil">Accueil</a
                 ></button
             >
             <button class="navbar__baptiste" aria-label="baptiste"
@@ -25,11 +26,11 @@
                 ><a href="@" class="navbar__gael-link" aria-label="gael">Gaël</a
                 ></button
             >
-            <button class="navbar__annesophie" aria-label="annsophie"
+            <button class="navbar__annesophie" aria-label="annesophie"
                 ><a
-                    href="@"
+                    href="/annesophie"
                     class="navbar__annesophie-link"
-                    aria-label="annsophie">Anne-Sophie</a
+                    aria-label="annesophie">Anne-Sophie</a
                 ></button
             >
             <button class="navbar__richard" aria-label="richard"
