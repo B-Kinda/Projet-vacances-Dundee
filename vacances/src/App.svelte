@@ -27,8 +27,7 @@
                 ><a href="@" class="navbar__gael-link" aria-label="gael">Gaël</a
                 ></button
             >
-            <button on:click={() => page = "annesophie"} class="navbar__annesophie" aria-label="annesophie"
-                ></button>
+            <button on:click={() => page = "annesophie"} class="navbar__annesophie" aria-label="annesophie">Anne-Sophie</button>
                 {#if page === "annesophie"}
                     <PageAnneSophie />
                 {/if}
