@@ -1,5 +1,6 @@
 <script>
-    import pageAnneSophie from"./page/annesophie.svelte";
+    import PageAnneSophie from"./page/annesophie.svelte";
+    let page = "accueil";
 </script>
 
 <main>
@@ -26,13 +27,11 @@
                 ><a href="@" class="navbar__gael-link" aria-label="gael">Gaël</a
                 ></button
             >
-            <button class="navbar__annesophie" aria-label="annesophie"
-                ><a
-                    href="/annesophie"
-                    class="navbar__annesophie-link"
-                    aria-label="annesophie">Anne-Sophie</a
-                ></button
-            >
+            <button on:click={() => page = "annesophie"} class="navbar__annesophie" aria-label="annesophie"
+                ></button>
+                {#if page === "annesophie"}
+                    <PageAnneSophie />
+                {/if}
             <button class="navbar__richard" aria-label="richard"
                 ><a href="@" class="navbar__richard-link" aria-label="richard"
                     >Richard</a
