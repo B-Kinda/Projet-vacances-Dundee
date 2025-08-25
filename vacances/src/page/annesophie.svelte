@@ -9,6 +9,8 @@ let questions = [];
 let currentQuestionIndex = 0;
 let score = 0;
 let quizFinished = false;
+let answered = false;
+let selectedAnswer = null;
 
  // --- Récupérer les questions depuis PocketBase ---
 
@@ -20,10 +22,16 @@ onMount(async () => {
 
 // --- Vérifier la réponse et passer à la question suivante ---
 
-function checkAnswer(selectedAnswer) {
-    if (selectedAnswer === questions[currentQuestionIndex].bonne_reponse) {
+function checkAnswer(answerKey) {
+    selectedAnswer = answerKey;
+    answered = true;
+    if (answerKey === questions[currentQuestionIndex].bonne_reponse) {
         score++;
     }
+}
+function nextQuestion() {
+    answered = false;
+    selectedAnswer = null;
     if (currentQuestionIndex < questions.length -1) {
         currentQuestionIndex++;
     } else {
@@ -47,10 +55,30 @@ function restartQuiz() {
             {#if !quizFinished}
                 <h1 class="title">Question {currentQuestionIndex +1}/{questions.length}</h1>
                 <p class="question">{questions[currentQuestionIndex].question}</p>
-                <button class="reponse" on:click={() => checkAnswer('reponse1')}>{questions[currentQuestionIndex].reponse1}</button>
-                <button class="reponse" on:click={() => checkAnswer('reponse2')}>{questions[currentQuestionIndex].reponse2}</button>
-                <button class="reponse" on:click={() => checkAnswer('reponse3')}>{questions[currentQuestionIndex].reponse3}</button>
-            {:else}
+                <button class="reponse"
+                class:reponse--answered={answered}
+                class:reponse--correct={answered && questions[currentQuestionIndex].bonne_reponse === 'reponse1'}
+                class:reponse--wrong={answered && selectedAnswer === 'reponse1' && selectedAnswer !== questions[currentQuestionIndex].bonne_reponse}
+                on:click={() => checkAnswer('reponse1')}
+                disabled={answered}>{questions[currentQuestionIndex].reponse1}</button>
+                <button class="reponse"
+                class:reponse--answered={answered}
+                class:reponse--correct={answered && questions[currentQuestionIndex].bonne_reponse === 'reponse2'}
+                class:reponse--wrong={answered && selectedAnswer === 'reponse2' && selectedAnswer !== questions[currentQuestionIndex].bonne_reponse}
+                on:click={() => checkAnswer('reponse2')}
+                disabled={answered}>{questions[currentQuestionIndex].reponse2}</button>
+                <button class="reponse"
+                class:reponse--answered={answered}
+                class:reponse--correct={answered && questions[currentQuestionIndex].bonne_reponse === 'reponse3'}
+                class:reponse--wrong={answered && selectedAnswer === 'reponse3' && selectedAnswer !== questions[currentQuestionIndex].bonne_reponse}
+                on:click={() => checkAnswer('reponse3')}
+                disabled={answered}>{questions[currentQuestionIndex].reponse3}</button>
+                    {#if answered}
+                        <p>{selectedAnswer === questions[currentQuestionIndex].bonne_reponse ? "Bonne réponse !"
+                        : `Mauvaise réponse. La bonne réponse était : ${questions[currentQuestionIndex][questions[currentQuestionIndex].bonne_reponse]}`}</p>
+                        <button class="next" on:click={nextQuestion}>{currentQuestionIndex < questions.length - 1 ? "Suivant" : "Voir le score"}</button>
+                    {/if}
+                {:else}
                 <h1 class="end-quiz">Quiz terminé !</h1>
                 <p class="result">ton score : {score}/{questions.length}</p>
                 <button on:click={restartQuiz}>Recommencer</button>
@@ -60,7 +88,7 @@ function restartQuiz() {
         {/if}
     </section>
 </main>
-
+// reste à faire le CSS pour la partie 82-84 du main //
 <style>
 
 .quiz-container {
@@ -74,27 +102,45 @@ function restartQuiz() {
 }
 .title,
 .question,
-.reponse {
-        border-radius: 0.8rem;
+.reponse,
+.next {
+    border-radius: 0.8rem;
     padding: 2rem;
-
+    border: none;
+    font-weight: bold;
 }
 .title {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
-    font-weight: bold;
     background: rgb(4, 109, 122);
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 .question {
     background: rgb(4, 79, 92);
-    margin-top: 3rem;
+    margin-top: 1rem;
     font-size: x-large;
+}
+.reponse,
+.next {
+    color: white;
+    font-size: large;
 }
 .reponse {
     background: rgb(71, 157, 172);
-    border: none;
-    color: white;
-    font-size: large;
+}
+.reponse--answered {
+    opacity: 0.7;
+    cursor: none;
+}
+.reponse--correct {
+    background: #09a777;
+    color: #fff;
+}
+.reponse--wrong {
+    background: #e73c3c;
+    color: #fff;
+}
+.next {
+    background: rgb(4, 167, 179);
 }
 </style>
