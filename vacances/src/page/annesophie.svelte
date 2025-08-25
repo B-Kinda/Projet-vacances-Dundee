@@ -55,6 +55,7 @@ function restartQuiz() {
             {#if !quizFinished}
                 <h1 class="title">Question {currentQuestionIndex +1}/{questions.length}</h1>
                 <p class="question">{questions[currentQuestionIndex].question}</p>
+            <div class="reponse-container">
                 <button class="reponse"
                 class:reponse--answered={answered}
                 class:reponse--correct={answered && questions[currentQuestionIndex].bonne_reponse === 'reponse1'}
@@ -73,52 +74,90 @@ function restartQuiz() {
                 class:reponse--wrong={answered && selectedAnswer === 'reponse3' && selectedAnswer !== questions[currentQuestionIndex].bonne_reponse}
                 on:click={() => checkAnswer('reponse3')}
                 disabled={answered}>{questions[currentQuestionIndex].reponse3}</button>
+            </div>
                     {#if answered}
-                        <p>{selectedAnswer === questions[currentQuestionIndex].bonne_reponse ? "Bonne réponse !"
+                        <p class="good-bad">{selectedAnswer === questions[currentQuestionIndex].bonne_reponse ? "Bonne réponse !"
                         : `Mauvaise réponse. La bonne réponse était : ${questions[currentQuestionIndex][questions[currentQuestionIndex].bonne_reponse]}`}</p>
                         <button class="next" on:click={nextQuestion}>{currentQuestionIndex < questions.length - 1 ? "Suivant" : "Voir le score"}</button>
                     {/if}
                 {:else}
                 <h1 class="end-quiz">Quiz terminé !</h1>
                 <p class="result">ton score : {score}/{questions.length}</p>
-                <button on:click={restartQuiz}>Recommencer</button>
+                <button class="restart" on:click={restartQuiz}>Recommencer</button>
             {/if}
             {:else}
                 <p class="loading">Chargement des questions...</p>
         {/if}
     </section>
 </main>
-// reste à faire le CSS pour la partie 82-84 du main //
+
 <style>
 
 .quiz-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 80vh;
     gap: 2rem;
-    background: rgb(35, 153, 173);
+    background-image: url(../../images/background-quiz.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-size: 85% auto;
     color: white;
 }
 .title,
 .question,
 .reponse,
-.next {
+.next,
+.end-quiz,
+.result,
+.restart {
     border-radius: 0.8rem;
     padding: 2rem;
     border: none;
     font-weight: bold;
 }
-.title {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.title,
+.reponse,
+.result {
+    background: rgb(27, 5, 93);
+}
+.title,
+.end-quiz,
+.result,
+.restart {
     font-size: xx-large;
-    background: rgb(4, 109, 122);
-    margin-top: 3rem;
+    margin-top: 2rem;
+}
+.question,
+.end-quiz {
+    background: rgb(63, 193, 231);
+}
+.next,
+.restart {
+    background: rgb(253, 146, 251);
+}
+.title,
+.end-quiz {
+    margin-top: 8rem;
+}
+.title,
+.question {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .question {
-    background: rgb(4, 79, 92);
-    margin-top: 1rem;
+    margin-top: 2rem;
     font-size: x-large;
+}
+.reponse-container {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
 }
 .reponse,
 .next {
@@ -126,11 +165,15 @@ function restartQuiz() {
     font-size: large;
 }
 .reponse {
-    background: rgb(71, 157, 172);
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 2rem;
+}
+.good-bad {
+    font-size: x-large;
 }
 .reponse--answered {
     opacity: 0.7;
-    cursor: none;
 }
 .reponse--correct {
     background: #09a777;
@@ -141,6 +184,9 @@ function restartQuiz() {
     color: #fff;
 }
 .next {
-    background: rgb(4, 167, 179);
+    color: white;
+}
+.restart {
+    color: white;
 }
 </style>

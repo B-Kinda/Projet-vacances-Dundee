@@ -27,7 +27,7 @@
                 ><a href="@" class="navbar__gael-link" aria-label="gael">Gaël</a
                 ></button
             >
-            <button on:click={() => page = "annesophie"} class="navbar__annesophie" aria-label="annesophie">Anne-Sophie</button>
+            <button on:click={() => page = "annesophie"} class="navbar__annesophie" aria-label="annesophie"></button>
             <button class="navbar__richard" aria-label="richard"
                 ><a href="@" class="navbar__richard-link" aria-label="richard"
                     >Richard</a
@@ -69,11 +69,17 @@
     }
     .navbar__baptiste {
         background-image: url(../public/pasteque.jpeg);
+    }
+    .navbar__annesophie,
+    .navbar__baptiste {
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 0.9rem;
         border-style: none;
         border: 0.2rem solid;
         /* border-color: linear-gradient(to right, #d86348, #1e1e1e) 1; */
+    }
+    .navbar__annesophie {
+        background-image: url(../images/quiz.jpeg);
     }
 </style>
