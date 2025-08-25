@@ -41,23 +41,60 @@ function restartQuiz() {
 </script>
 
 <!-- Interface du quiz -->
-
-{#if questions.length > 0}
-    {#if !quizFinished}
-        <h1>Question {currentQuestionIndex +1}/{questions.length}</h1>
-        <p>{questions[currentQuestionIndex].question}</p>
-        <button on:click={() => checkAnswer('reponse1')}>{questions[currentQuestionIndex].reponse1}</button>
-        <button on:click={() => checkAnswer('reponse2')}>{questions[currentQuestionIndex].reponse2}</button>
-        <button on:click={() => checkAnswer('reponse3')}>{questions[currentQuestionIndex].reponse3}</button>
-        {:else}
-            <h1>Quiz terminé !</h1>
-            <p>ton score : {score}/{questions.length}</p>
-            <button on:click={restartQuiz}>Recommencer</button>
-    {/if}
-        {:else}
-        <p>Chargement des questions...</p>
-{/if}
-
+<main>
+    <section class="quiz-container">
+        {#if questions.length > 0}
+            {#if !quizFinished}
+                <h1 class="title">Question {currentQuestionIndex +1}/{questions.length}</h1>
+                <p class="question">{questions[currentQuestionIndex].question}</p>
+                <button class="reponse" on:click={() => checkAnswer('reponse1')}>{questions[currentQuestionIndex].reponse1}</button>
+                <button class="reponse" on:click={() => checkAnswer('reponse2')}>{questions[currentQuestionIndex].reponse2}</button>
+                <button class="reponse" on:click={() => checkAnswer('reponse3')}>{questions[currentQuestionIndex].reponse3}</button>
+            {:else}
+                <h1 class="end-quiz">Quiz terminé !</h1>
+                <p class="result">ton score : {score}/{questions.length}</p>
+                <button on:click={restartQuiz}>Recommencer</button>
+            {/if}
+            {:else}
+                <p class="loading">Chargement des questions...</p>
+        {/if}
+    </section>
+</main>
 
 <style>
+
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    gap: 2rem;
+    background: rgb(35, 153, 173);
+    color: white;
+}
+.title,
+.question,
+.reponse {
+        border-radius: 0.8rem;
+    padding: 2rem;
+
+}
+.title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    background: rgb(4, 109, 122);
+    margin-top: 5rem;
+}
+.question {
+    background: rgb(4, 79, 92);
+    margin-top: 3rem;
+    font-size: x-large;
+}
+.reponse {
+    background: rgb(71, 157, 172);
+    border: none;
+    color: white;
+    font-size: large;
+}
 </style>

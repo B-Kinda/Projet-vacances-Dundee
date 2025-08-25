@@ -28,9 +28,6 @@
                 ></button
             >
             <button on:click={() => page = "annesophie"} class="navbar__annesophie" aria-label="annesophie">Anne-Sophie</button>
-                {#if page === "annesophie"}
-                    <PageAnneSophie />
-                {/if}
             <button class="navbar__richard" aria-label="richard"
                 ><a href="@" class="navbar__richard-link" aria-label="richard"
                     >Richard</a
@@ -38,6 +35,9 @@
             >
         </nav>
     </header>
+                {#if page === "annesophie"}
+                    <PageAnneSophie />
+                {/if}
     <div class="cards">
         <section class="cards__baptiste"></section>
         <section class="cards__julien"></section>
